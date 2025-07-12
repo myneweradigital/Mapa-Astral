@@ -3,136 +3,169 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mapa Numerológico Caldeu</title>
+  <title>Mapa Astral Gratuito | Meio Astróloga</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
     body {
-      background-color: #1f1b2e;
-      color: #f0eaff;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('https://images.unsplash.com/photo-1580041064820-2fe2dcd2caff?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+      background-size: cover;
+      color: #fefefe;
+      font-family: 'Quicksand', sans-serif;
       margin: 0;
       padding: 2rem;
       text-align: center;
     }
 
     h1 {
-      color: #8A2BE2;
+      font-size: 2.5rem;
+      color: #d6a2e8;
+      margin-bottom: 0.2rem;
     }
 
-    input[type="text"] {
-      padding: 0.5rem;
+    h2 {
+      color: #e3b8ff;
+    }
+
+    p.subtitle {
+      font-size: 1.2rem;
+      color: #f2d4ff;
+      margin-bottom: 2rem;
+    }
+
+    input[type="text"], input[type="date"], input[type="time"] {
+      padding: 0.6rem;
       font-size: 1.1rem;
       width: 60%;
       max-width: 400px;
-      border: 2px solid #6A0DAD;
+      border: 2px solid #d6a2e8;
       border-radius: 8px;
-      margin-bottom: 1rem;
+      background-color: rgba(255, 255, 255, 0.15);
+      color: #fff;
     }
 
     button {
-      background-color: #4B0082;
-      color: white;
+      background-color: #c084dc;
+      color: #fff;
       border: none;
       padding: 0.7rem 1.5rem;
       border-radius: 10px;
       font-size: 1.1rem;
       cursor: pointer;
-      transition: 0.3s;
+      margin: 1rem 0.5rem;
+      transition: all 0.3s ease-in-out;
     }
 
     button:hover {
-      background-color: #6A0DAD;
+      background-color: #a666c8;
+      transform: scale(1.05);
     }
 
-    table {
-      margin: 2rem auto;
-      border-collapse: collapse;
-      width: 90%;
-      max-width: 600px;
-      background-color: #2b2540;
-      color: #fff;
-    }
-
-    th, td {
-      border: 1px solid #8A2BE2;
-      padding: 0.7rem;
-      font-size: 1.1rem;
+    #resultado {
+      margin-top: 2rem;
+      animation: fadeIn 1s ease-in-out;
     }
 
     .cta {
       margin-top: 3rem;
-      background-color: #8A2BE2;
-      padding: 1.5rem;
+      background-color: rgba(198, 140, 233, 0.85);
+      padding: 2rem;
       border-radius: 12px;
-    }
-
-    .cta h2 {
-      margin-top: 0;
-      color: white;
+      display: inline-block;
     }
 
     .cta a {
-      color: #fff;
+      display: inline-block;
+      margin: 0.5rem 1rem;
+      padding: 0.7rem 1.2rem;
+      background-color: #8236a6;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
       font-weight: bold;
-      text-decoration: underline;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
-  <h1>Mapa Numerológico Caldeu</h1>
-  <p>Digite seu nome completo para gerar seu mapa:</p>
-  <input type="text" id="nome" placeholder="Ex: Ana Paula Souza" />
-  <br>
+  <h1>Descubra seu Mapa Astral Gratuito</h1>
+  <p class="subtitle">por Meio Astróloga</p>
+  <p>Preencha os campos abaixo para gerar seu mapa:</p>
+
+  <input type="text" id="nome" placeholder="Nome mais usado" /><br><br>
+  <input type="text" id="nome_completo" placeholder="Nome completo de nascimento" /><br><br>
+  <input type="date" id="data" /><br><br>
+  <input type="time" id="hora" /><br><br>
+  <input type="text" id="local" placeholder="Local de nascimento (cidade, país)" /><br><br>
+
   <button onclick="gerarMapa()">Gerar Mapa</button>
+  <button onclick="baixarPDF()">Baixar PDF</button>
 
   <div id="resultado"></div>
 
   <div class="cta">
-    <h2>Gostou do seu mapa?</h2>
-    <p>Entre para minha comunidade e aprofunde sua jornada espiritual 🌌</p>
-    <p><a href="https://www.instagram.com/meioastrologa/" target="_blank">Clique aqui para participar</a></p>
+    <h2>Conecte-se com a nossa energia 💜</h2>
+    <a href="https://www.instagram.com/meioastrologa/" target="_blank">Nos acompanhe no Instagram</a>
+    <a href="https://chat.whatsapp.com/IDkAfw7blIOC6Q1Ymq01EU?mode=ac_c" target="_blank">Faça parte da nossa comunidade</a>
   </div>
 
   <script>
-    const tabelaCaldeu = {
-      '1': ['A', 'I', 'J', 'Q', 'Y'],
-      '2': ['B', 'K', 'R'],
-      '3': ['C', 'G', 'L', 'S'],
-      '4': ['D', 'M', 'T'],
-      '5': ['E', 'H', 'N', 'X'],
-      '6': ['U', 'V', 'W'],
-      '7': ['O', 'Z'],
-      '8': ['F', 'P']
-    };
-
-    function letraParaNumero(letra) {
-      letra = letra.toUpperCase();
-      for (const [numero, letras] of Object.entries(tabelaCaldeu)) {
-        if (letras.includes(letra)) return parseInt(numero);
-      }
-      return 0;
-    }
+    let mapaGerado = '';
 
     function gerarMapa() {
       const nome = document.getElementById("nome").value;
-      const letras = nome.replace(/[^a-zA-Z]/g, '').split('');
-      const numeros = letras.map(letraParaNumero);
-      const soma = numeros.reduce((acc, n) => acc + n, 0);
+      const nome_completo = document.getElementById("nome_completo").value;
+      const data = document.getElementById("data").value;
+      const hora = document.getElementById("hora").value;
+      const local = document.getElementById("local").value;
 
-      let numeroFinal = soma;
-      while (numeroFinal > 9 && ![11, 22].includes(numeroFinal)) {
-        numeroFinal = numeroFinal.toString().split('').reduce((a, b) => a + parseInt(b), 0);
+      if (!nome || !nome_completo || !data || !hora || !local) {
+        alert("Por favor, preencha todos os campos antes de continuar.");
+        return;
       }
 
-      let html = `<h2>Resultado do Mapa</h2>`;
-      html += `<table><tr><th>Letra</th><th>Número</th></tr>`;
-      letras.forEach((letra, i) => {
-        html += `<tr><td>${letra.toUpperCase()}</td><td>${numeros[i]}</td></tr>`;
-      });
-      html += `</table>`;
-      html += `<p><strong>Soma:</strong> ${soma}</p>`;
-      html += `<p><strong>Número final:</strong> ${numeroFinal}</p>`;
+      const resultado = document.getElementById("resultado");
+      resultado.innerHTML = '<p>🔮 Calculando seu Mapa Astral com a sabedoria dos astros...</p>';
 
-      document.getElementById("resultado").innerHTML = html;
+      setTimeout(() => {
+        mapaGerado = `🌌 Mapa Astral de ${nome}\n
+Nome completo: ${nome_completo}\nData: ${data} às ${hora}\nLocal: ${local}\n
+Sol em: Leão\nAscendente em: Áries\nLua em: Peixes\nMercúrio em: Câncer\nVênus em: Virgem\nMarte em: Sagitário\nCasa 1: Áries\nCasa 7: Libra\nElemento dominante: Fogo\nMissão de alma: Expressar autenticidade com coragem.`;
+
+        resultado.innerHTML = `<h2>🌌 Mapa Astral de ${nome}</h2>
+          <p><strong>Nome completo:</strong> ${nome_completo}</p>
+          <p><strong>Data:</strong> ${data} às ${hora}</p>
+          <p><strong>Local:</strong> ${local}</p>
+          <ul style="text-align:left; max-width: 600px; margin: 1rem auto;">
+            <li><strong>Sol em:</strong> Leão</li>
+            <li><strong>Ascendente em:</strong> Áries</li>
+            <li><strong>Lua em:</strong> Peixes</li>
+            <li><strong>Mercúrio em:</strong> Câncer</li>
+            <li><strong>Vênus em:</strong> Virgem</li>
+            <li><strong>Marte em:</strong> Sagitário</li>
+            <li><strong>Casa 1:</strong> Áries</li>
+            <li><strong>Casa 7:</strong> Libra</li>
+            <li><strong>Elemento dominante:</strong> Fogo</li>
+            <li><strong>Missão de alma:</strong> Expressar autenticidade com coragem.</li>
+          </ul>
+          <p><em>Obs: Este é um exemplo. Em breve, o sistema será alimentado por inteligência astrológica real.</em></p>`;
+      }, 2000);
+    }
+
+    function baixarPDF() {
+      if (!mapaGerado) {
+        alert("Você precisa gerar o mapa primeiro!");
+        return;
+      }
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      doc.setFontSize(14);
+      doc.text(mapaGerado, 10, 20);
+      doc.save("mapa-astral-meioastrologa.pdf");
     }
   </script>
 </body>
