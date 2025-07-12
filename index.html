@@ -8,8 +8,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
     body {
-      background: url('https://images.unsplash.com/photo-1580041064820-2fe2dcd2caff?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+      background-color: #0d0c1d;
+      background-image: url('https://images.unsplash.com/photo-1549887534-ccdb5c5e4b80?auto=format&fit=crop&w=1950&q=80');
+      background-repeat: no-repeat;
       background-size: cover;
+      background-position: center;
       color: #fefefe;
       font-family: 'Quicksand', sans-serif;
       margin: 0;
@@ -19,17 +22,17 @@
 
     h1 {
       font-size: 2.5rem;
-      color: #d6a2e8;
+      color: #e9c5ff;
       margin-bottom: 0.2rem;
     }
 
     h2 {
-      color: #e3b8ff;
+      color: #f1d8ff;
     }
 
     p.subtitle {
       font-size: 1.2rem;
-      color: #f2d4ff;
+      color: #dab6f5;
       margin-bottom: 2rem;
     }
 
@@ -38,14 +41,15 @@
       font-size: 1.1rem;
       width: 60%;
       max-width: 400px;
-      border: 2px solid #d6a2e8;
+      border: 2px solid #c98cf1;
       border-radius: 8px;
-      background-color: rgba(255, 255, 255, 0.15);
+      background-color: rgba(255, 255, 255, 0.1);
       color: #fff;
+      margin-bottom: 1rem;
     }
 
     button {
-      background-color: #c084dc;
+      background-color: #bf74e8;
       color: #fff;
       border: none;
       padding: 0.7rem 1.5rem;
@@ -57,7 +61,7 @@
     }
 
     button:hover {
-      background-color: #a666c8;
+      background-color: #9d58cc;
       transform: scale(1.05);
     }
 
@@ -68,7 +72,7 @@
 
     .cta {
       margin-top: 3rem;
-      background-color: rgba(198, 140, 233, 0.85);
+      background-color: rgba(185, 115, 231, 0.85);
       padding: 2rem;
       border-radius: 12px;
       display: inline-block;
@@ -94,13 +98,13 @@
 <body>
   <h1>Descubra seu Mapa Astral Gratuito</h1>
   <p class="subtitle">por Meio Astróloga</p>
-  <p>Preencha os campos abaixo para gerar seu mapa:</p>
+  <p style="color:#ccc">Preencha os campos abaixo para gerar seu mapa:</p>
 
-  <input type="text" id="nome" placeholder="Nome mais usado" /><br><br>
-  <input type="text" id="nome_completo" placeholder="Nome completo de nascimento" /><br><br>
-  <input type="date" id="data" /><br><br>
-  <input type="time" id="hora" /><br><br>
-  <input type="text" id="local" placeholder="Local de nascimento (cidade, país)" /><br><br>
+  <input type="text" id="nome" placeholder="Nome mais usado" /><br>
+  <input type="text" id="nome_completo" placeholder="Nome completo de nascimento" /><br>
+  <input type="date" id="data" /><br>
+  <input type="time" id="hora" /><br>
+  <input type="text" id="local" placeholder="Local de nascimento (cidade, país)" /><br>
 
   <button onclick="gerarMapa()">Gerar Mapa</button>
   <button onclick="baixarPDF()">Baixar PDF</button>
@@ -132,9 +136,7 @@
       resultado.innerHTML = '<p>🔮 Calculando seu Mapa Astral com a sabedoria dos astros...</p>';
 
       setTimeout(() => {
-        mapaGerado = `🌌 Mapa Astral de ${nome}\n
-Nome completo: ${nome_completo}\nData: ${data} às ${hora}\nLocal: ${local}\n
-Sol em: Leão\nAscendente em: Áries\nLua em: Peixes\nMercúrio em: Câncer\nVênus em: Virgem\nMarte em: Sagitário\nCasa 1: Áries\nCasa 7: Libra\nElemento dominante: Fogo\nMissão de alma: Expressar autenticidade com coragem.`;
+        mapaGerado = `🌌 Mapa Astral de ${nome}\n\nNome completo: ${nome_completo}\nData: ${data} às ${hora}\nLocal: ${local}\n\nSol em: Leão\nAscendente em: Áries\nLua em: Peixes\nMercúrio em: Câncer\nVênus em: Virgem\nMarte em: Sagitário\nCasa 1: Áries\nCasa 7: Libra\nElemento dominante: Fogo\nMissão de alma: Expressar autenticidade com coragem.`;
 
         resultado.innerHTML = `<h2>🌌 Mapa Astral de ${nome}</h2>
           <p><strong>Nome completo:</strong> ${nome_completo}</p>
